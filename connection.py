@@ -126,10 +126,10 @@ try:
         popular_prescricao_medicamento(cursor, qtd_prescricao_meds, qtd_prescricoes, qtd_medicamentos)
 
         conn.commit()
-        print("✅ Dados inseridos com sucesso!")
+        print("Dados inseridos com sucesso.")
 
 except Error as e:
-    print(f"❌ Erro: {e}")
+    print(f"Erro: {e}")
 
 finally:
     if conn.is_connected():
