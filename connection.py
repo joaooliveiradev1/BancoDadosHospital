@@ -6,16 +6,14 @@ from datetime import datetime, timedelta
 
 fake = Faker('pt_BR')
 
-# Conexão com o banco
 def conectar():
     return mysql.connector.connect(
-        host='localhost',
-        user='seu_usuario',
-        password='sua_senha',
+        host='127.0.0.1',
+        user='root',
+        password='12345678',
         database='hospital_db'
     )
 
-# Populadores
 def popular_departamentos(cursor, quantidade):
     for i in range(1, quantidade + 1):
         cursor.execute(
@@ -97,13 +95,12 @@ def popular_prescricao_medicamento(cursor, quantidade, max_prescricoes, max_medi
             (i, random.randint(1, max_medicamentos), random.randint(1, max_prescricoes))
         )
 
-# Execução
+
 try:
     conn = conectar()
     if conn.is_connected():
         cursor = conn.cursor()
 
-        # Aqui você pode definir as quantidades:
         qtd_departamentos = 5
         qtd_planos = 5
         qtd_pacientes = 100
@@ -116,7 +113,6 @@ try:
         qtd_prescricoes = 80
         qtd_prescricao_meds = 100
 
-        # Ordem de inserção respeitando FK
         popular_departamentos(cursor, qtd_departamentos)
         popular_planos(cursor, qtd_planos)
         popular_pacientes(cursor, qtd_pacientes)
